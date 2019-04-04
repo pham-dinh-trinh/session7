@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Funny circles</title>
+</head>
+<body style="text-align: center; margin-top: 50px;">
+<canvas id="myCanvas" width="500" height="300" style="border: 1px solid #333333;"></canvas>
+<script>
+    let circles = [];
+    let maxWidth = 700;
+    let maxHeight = 500;
+    let n = parseInt(prompt(' Enter the ball number'));
+
+    for (let i = 0; i < n; i++) {
+        circles[circles.length] = {
+            x : randomX(),
+            y : randomY(),
+            r : randomR(),
+            vx : randomV(),
+            vy : randomV(),
+            color : getRandomColor(),
+        };
+    }
+
+    function getRandomHex() {
+        return Math.floor(Math.random()*255);
+    }
+
+    function getRandomColor() {
+        let red = getRandomHex();
+        let blue = getRandomHex();
+        let green = getRandomHex();
+        return 'rgb(' + red + ',' + blue + ',' + green + ')';
+    }
+
+    function randomX() {
+        return Math.random() * (maxWidth - 100) + 50;
+    }
+
+    function randomY() {
+        return Math.random() * (maxHeight - 100) + 50;
+    }
+
+    function randomR() {
+        return Math.floor(Math.random()*10) + 30;
+    }
+
+    function randomV() {
+        return Math.floor(Math.random()*3)+3;
+    }
+
+    function moveCircles() {
+        setTimeout(function () {
+            let pen = document.getElementById("myCanvas").getContext('2d');
+            pen.clearRect(0,0,maxWidth, maxHeight);
+            for (let circle of circles){
+                if (circle.x > maxWidth - circle.r || circle.x < circle.r){
+                    circle.vx = -circle.vx;
+                } else if (circle.y > maxHeight - circle.r || circle.y < circle.r){
+                    circle.vy = -circle.vy;
+                } else {
+                    for (let i=0; i<n;i++){
+                        for (let j=i+1;j<n;j++){
+                            if (Math.sqrt((circles[i].x-circles[j].x) * (circles[i].x-circles[j].x)
+                                + (circles[i].y-circles[j].y)*(circles[i].y-circles[j].y)) < circles[i].r+circles[j].r){
+                                circles[i].vx = -circles[i].vx;
+                                circles[i].vy = -circles[i].vy;
+
+                                circles[j].vx = -circles[j].vx;
+                                circles[j].vy = -circles[j].vy;
+
+                                circles[i].color = getRandomColor();
+                                circles[j].color = getRandomColor();
+                            }
+                        }
+                    }
+                }
+                pen.beginPath();
+                pen.arc(circle.x, circle.y, circle.r,0,Math.PI*2);
+                pen.fillStyle = circle.color;
+                pen.fill();
+                pen.stroke();
+
+                circle.x +=circle.vx;
+                circle.y +=circle.vy;
+            }
+            moveCircles()
+        }, 20)
+    }
+
+    moveCircles();
+</script>
+</body>
+</html>
