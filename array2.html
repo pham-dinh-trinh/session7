@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let arr = [25,"-",234,52,54,"-",43];
+    document.write("Chuỗi ban đầu là :"+ arr +"</br>");
+    for (i= 0;i<= arr.length;i++){
+        if (arr[i]==="-"){
+            arr[i] = '_';
+        }
+    }
+    document.write("Chuỗi sau khi thay thế - bằng _ là :" + arr);
+</script>
+</body>
+</html>
