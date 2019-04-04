@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let x = [1,3,4,8,5,2,3,9,12,14,16];
+    let first = 0;
+    let last = x.length - 1;
+
+    document.write('chuoi ban dau: ' + x + '<br/>');
+
+    while (first < last) {
+        let a;
+        a = x[first]
+        x[first] = x[last];
+        x[last] = a;
+        first++;
+        last--;
+    }
+    document.write('Chuỗi đảo ngược là: ' + x + '<br/>');
+
+</script>
+</body>
+</html>
