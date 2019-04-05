@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature</title>
+</head>
+<body>
+<script>
+    function Temperature(celsius) {
+        this.celsius= celsius;
+        this.getFahrenheit= function () {
+            return celsius* 1.8+ 32;
+        };
+        this.getKenvin= function () {
+            return celsius+ 273.15;
+        };
+    }
+    function drawTemperature() {
+        let celsius= parseInt(prompt("Nhập độ C :"));
+        let temperature= new Temperature(celsius);
+        let fahrenheit= temperature.getFahrenheit();
+        let kenvin= temperature.getKenvin();
+        document.write(celsius+" độ C ="+fahrenheit+" độ F"+ kenvin+" Độ K;");
+    }
+    drawTemperature();
+</script>
+</body>
+</html>
