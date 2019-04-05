@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>classRectangle</title>
+</head>
+<body>
+<canvas id="myCanvas" width="500" height="300" style="border: 1px solid #333333;"></canvas>
+<script>
+    function Rectangle(height, width) {
+        this.height = height;
+        this.width = width;
+        this.getArea = function () {
+            return height * width;
+        };
+        this.getCv = function () {
+            return 2 * (height + width);
+        };
+    }
+    function drawRectangle() {
+        let height = parseInt(prompt('Input height of rectangle'));
+        let width = parseInt(prompt('Input width of rectangle'));
+        let rectangle = new Rectangle(height, width);
+        let area = rectangle.getArea();
+        let cv = rectangle.getCv();
+        document.getElementById('myCanvas').height = height;
+        document.getElementById('myCanvas').width = width;
+        document.write('<br/> Diện tích hình chữ nhật là ' + area + ' ; Chu vi của hình chữ nhật là: ' +cv);
+    }
+    drawRectangle();
+</script>
+</body>
+</html>
